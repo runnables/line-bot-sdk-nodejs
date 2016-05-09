@@ -1,6 +1,6 @@
 {
   "name": "line-bot-sdk-nodejs",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "SDK of the LINE BOT API Trial for Node.js",
   "main": "index.js",
   "scripts": {
