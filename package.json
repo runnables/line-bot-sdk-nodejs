@@ -23,6 +23,7 @@
   },
   "homepage": "https://github.com/runnables/line-bot-sdk-nodejs#readme",
   "dependencies": {
+    "debug": "~2.2.0",
     "lodash": "^4.12.0",
     "superagent": "^1.8.3",
     "superagent-promise": "^1.1.0"
