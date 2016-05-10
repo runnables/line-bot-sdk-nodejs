@@ -32,7 +32,6 @@ mid can be a string or an array of strings.
 #### sendText(mid, text[, toType])
 
 Send a text message to mid(s).
-
 [https://developers.line.me/bot-api/api-reference#sending_message_text](https://developers.line.me/bot-api/api-reference#sending_message_text)
 
 ```js
@@ -43,7 +42,6 @@ lineBot.sendText(['<target mid 1>', '<target mid 2>'], 'Message');
 #### sendImage(mid, imageURL, previewURL[, toType])
 
 Send an image to mid(s).
-
 [https://developers.line.me/bot-api/api-reference#sending_message_image](https://developers.line.me/bot-api/api-reference#sending_message_image)
 
 ```js
@@ -53,7 +51,6 @@ lineBot.sendImage('<target mid>', 'http://example.com/image.jpg', 'http://exampl
 #### sendVideo(mid, videoURL, previewImageURL[, toType])
 
 Send a video to mid(s).
-
 [https://developers.line.me/bot-api/api-reference#sending_message_video](https://developers.line.me/bot-api/api-reference#sending_message_video)
 
 ```js
@@ -63,7 +60,6 @@ lineBot.sendVideo('<target mid>', 'http://example.com/video.mp4', 'http://exampl
 #### sendAudio(mid, audioURL, durationMillis[, toType])
 
 Send a voice message to mid(s).
-
 [https://developers.line.me/bot-api/api-reference#sending_message_audio](https://developers.line.me/bot-api/api-reference#sending_message_audio)
 
 ```js
@@ -73,7 +69,6 @@ lineBot.sendAudio('<target mid>', 'http://example.com/audio.m4a', 5000);
 #### sendLocation(mid, text, latitude, longitude[, toType])
 
 Send location information to mid(s).
-
 [https://developers.line.me/bot-api/api-reference#sending_message_location](https://developers.line.me/bot-api/api-reference#sending_message_location)
 
 ```js
@@ -83,7 +78,6 @@ lineBot.sendLocation('<target mid>', '2 Chome-21-1 Shibuya Tokyo 150-0002, Japan
 #### sendSticker(mid, stkid, stkpkgid, stkver[, toType])
 
 Send a sticker to mid(s).
-
 [https://developers.line.me/bot-api/api-reference#sending_message_sticker](https://developers.line.me/bot-api/api-reference#sending_message_sticker)
 
 ```js
@@ -93,7 +87,6 @@ lineBot.sendSticker('<target mid>', 1, 1, 100);
 #### sendRichMessage(mid, imageURL, altText, markup[, toType])
 
 Send a rich message to mid(s).
-
 [https://developers.line.me/bot-api/api-reference#sending_rich_content_message_request](https://developers.line.me/bot-api/api-reference#sending_rich_content_message_request)
 
 Note: Please see [image url specifications](https://developers.line.me/bot-api/api-reference#sending_rich_content_message_prerequisite)
@@ -127,9 +120,16 @@ License
 ```
 Copyright (c) 2016, Runnables Company Limited
 
-Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby granted, provided that the above copyright notice and this permission notice appear in all copies.
+Permission to use, copy, modify, and/or distribute this software for any purpose with 
+or without fee is hereby granted, provided that the above copyright notice and this 
+permission notice appear in all copies.
 
-THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
+THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH REGARD 
+TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS. 
+IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL 
+DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER 
+IN AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN 
+CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 ```
 
 See Also
