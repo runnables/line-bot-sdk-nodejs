@@ -171,6 +171,19 @@ client.sendMultipleMessages('<target mid>', multipleMessages);
 
 #### getUserProfile(mid)
 
+Retrieve user profile(s) that is associated with mid(s).  
+[https://developers.line.me/bot-api/api-reference#getting_user_profile_information_request](https://developers.line.me/bot-api/api-reference#getting_user_profile_information_request)
+
+```js
+client
+  .getUserProfile(['<target mid>'])
+  .then(function(res) {
+    var contacts = res.body.contacts;
+    
+    client.sendText(contacts[0].mid, 'Hello, ' + contacts[0].displayName);
+  });
+```
+
 ### Other
 
 #### validateSignature(json, signature)
