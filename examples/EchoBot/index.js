@@ -3,9 +3,9 @@ var bodyParser = require('body-parser');
 var express = require('express');
 var request = require('superagent');
 var lineBot = require('line-bot-sdk')({
-  channelID: '1466956410',
-  channelSecret: '2a43289185e1769dcc9f6684e44b380c',
-  trustedUserWithACL: 'ud17329fe10daf6988415791a917a6bb6'
+  channelID: 'YOUR_CHANNEL_ID',
+  channelSecret: 'YOUR_CHANNEL_SECRET',
+  channelMID: 'YOUR_CHANNEL_MID'
 });
 
 var app = express();
@@ -16,29 +16,80 @@ app.use(bodyParser.urlencoded({ extended: false, limit: 2 * 1024 * 1024 }));
 app.use(bodyParser.json({ limit: 2 * 1024 * 1024 }));
 
 app.post('/', function (req, res) {
-  console.log(req.body);
+  console.log(req.body.result);
 
-  var receives = lineBot.createReceivesFromJSON(req.body.result);
-  console.log(receives);
+  var receives = lineBot.createReceivesFromJSON(req.body);
+  _.each(receives, function(receive){
+    
+    if(receive.isMessage()){
 
-  /*
-  if (req.body.result && _.isArray(req.body.result)) {
-    _.each(req.body.result, function(item) {
-      if (item.content && item.content.from && item.content.text) {
-        request
-          .get('http://sandbox.api.simsimi.com/request.p?key=' + simsimiAPIKey + 
-            '&text=' + encodeURIComponent(item.content.text) + 
-            '&lc=' + simsimiLanguageCode)
-          .end(function(err, res){
-            if(!err){
-              lineBot.sendText([item.content.from], res.body.response);
-            }
-          });
-        //
+      if(receive.isText()){
+
+        if(receive.getText()==='me'){
+          lineBot.getUserProfile(receive.getFromMid())
+            .then(function onResult(res){
+              if(res.status === 200){
+                var contacts = res.body.contacts;
+                if(contacts.length > 0){
+                  lineBot.sendText(receive.getFromMid(), 'Hi!, you\'re ' + contacts[0].displayName);
+                }
+              }
+            }, function onError(err){
+              console.error(err);
+            });
+        } else {
+          lineBot.sendText(receive.getFromMid(), receive.getText());
+        }
+
+      }else if(receive.isImage()){
+        
+        lineBot.sendText(receive.getFromMid(), 'Thanks for the image!');
+
+      }else if(receive.isVideo()){
+
+        lineBot.sendText(receive.getFromMid(), 'Thanks for the video!');
+
+      }else if(receive.isAudio()){
+
+        lineBot.sendText(receive.getFromMid(), 'Thanks for the audio!');
+
+      }else if(receive.isLocation()){
+
+        lineBot.sendLocation(
+            receive.getFromMid(),
+            receive.getText() + receive.getAddress(),
+            receive.getLatitude(),
+            receive.getLongitude()
+          );
+
+      }else if(receive.isSticker()){
+
+        // This only works if the BOT account have the same sticker too
+        lineBot.sendSticker(
+            receive.getFromMid(),
+            receive.getStkId(),
+            receive.getStkPkgId(),
+            receive.getStkVer()
+          );
+
+      }else if(receive.isContact()){
+        
+        lineBot.sendText(receive.getFromMid(), 'Thanks for the contact');
+
+      }else{
+        console.error('found unknown message type');
       }
-    });
-  }
-  */
+    }else if(receive.isOperation()){
+
+      console.log('found operation');
+
+    }else {
+
+      console.error('invalid receive type');
+
+    }
+
+  });
   
   res.send('ok');
 });

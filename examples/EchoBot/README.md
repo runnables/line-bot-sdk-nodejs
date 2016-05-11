@@ -1,10 +1,9 @@
-# LINE Bot API Simsimi Example
+# LINE Bot API EchoBot Example
 
-A LINE Bot API example showing how to redirect your communication with LINE bot to Simsimi API and then back.
+A LINE Bot API example showing how to receive and return each type of messages.
 
 ## Prerequisite
 - Have a [LINE BOT Trial](https://developers.line.me/bot-api/overview) account running 
-- Have an access to [Simsimi API](http://developer.simsimi.com/api) (Trial version is fine)
 
 ## Running Locally
 
