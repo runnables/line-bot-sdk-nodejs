@@ -5,7 +5,7 @@ var request = require('superagent');
 var lineBot = require('line-bot-sdk')({
   channelID: 'YOUR_LINE_BOT_CHANNEL_ID',
   channelSecret: 'YOUR_LINE_BOT_CHANNEL_SECRET',
-  trustedUserWithACL: 'YOUR_LINE_BOT_MID'
+  channelMID: 'YOUR_LINE_BOT_MID'
 });
 
 var simsimiAPIKey = 'YOUR_SIMSIMI_API_KEY';
@@ -24,8 +24,8 @@ app.post('/', function (req, res) {
     _.each(req.body.result, function(item) {
       if (item.content && item.content.from && item.content.text) {
         request
-          .get('http://sandbox.api.simsimi.com/request.p?key=' + simsimiAPIKey + 
-            '&text=' + encodeURIComponent(item.content.text) + 
+          .get('http://sandbox.api.simsimi.com/request.p?key=' + simsimiAPIKey +
+            '&text=' + encodeURIComponent(item.content.text) +
             '&lc=' + simsimiLanguageCode)
           .end(function(err, res){
             if(!err){
@@ -36,7 +36,7 @@ app.post('/', function (req, res) {
       }
     });
   }
-  
+
   res.send('ok');
 });
 
