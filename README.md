@@ -29,7 +29,7 @@ var lineBot = require('line-bot-sdk')({
 ### For Business Account API
 ```js
 var lineBot = require('line-bot-sdk')({
-  channelToken: '<your channel Token>',
+  channelToken: '<your channel token>'
 });
 ```
 
