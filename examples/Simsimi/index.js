@@ -2,10 +2,11 @@ var _ = require('lodash');
 var bodyParser = require('body-parser');
 var express = require('express');
 var request = require('superagent');
-var lineBot = require('line-bot-sdk')({
-  channelID: 'YOUR_LINE_BOT_CHANNEL_ID',
-  channelSecret: 'YOUR_LINE_BOT_CHANNEL_SECRET',
-  channelMID: 'YOUR_LINE_BOT_MID'
+var LineBot = require('line-bot-sdk');
+var client = LineBot.client({
+  channelID: 'YOUR_CHANNEL_ID',
+  channelSecret: 'YOUR_CHANNEL_SECRET',
+  channelMID: 'YOUR_CHANNEL_MID'
 });
 
 var simsimiAPIKey = 'YOUR_SIMSIMI_API_KEY';
@@ -29,7 +30,7 @@ app.post('/', function (req, res) {
             '&lc=' + simsimiLanguageCode)
           .end(function(err, res){
             if(!err){
-              lineBot.sendText([item.content.from], res.body.response);
+              client.sendText([item.content.from], res.body.response);
             }
           });
         //
