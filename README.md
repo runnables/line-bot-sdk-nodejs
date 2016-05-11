@@ -17,9 +17,16 @@ npm install line-bot-sdk
 Usage
 --
 
-### BOT API Trial
+### Require SDK
+
 ```js
-var lineBot = require('line-bot-sdk')({
+var LineBot = require('line-bot-sdk');
+```
+
+### BOT API Trial
+
+```js
+var client = LineBot.client({
   channelID: '<your channel ID>',
   channelSecret: '<your channel secret>',
   channelMID: '<your channel MID>'
@@ -27,10 +34,23 @@ var lineBot = require('line-bot-sdk')({
 ```
 
 ### Business Connect
+
 ```js
-var lineBot = require('line-bot-sdk')({
+var client = LineBot.client({
   channelToken: '<your channel token>'
 });
+```
+
+### Enable Debugging Mode
+
+Use `DEBUG` env var to enable debugging mode
+
+Available mode
+* line-bot:log
+* line-bot:error
+
+```
+$ DEBUG=line-bot:* node app.js
 ```
 
 ### Sending Message
@@ -39,85 +59,85 @@ mid can be a string or an array of strings.
 
 #### sendText(mid, text[, toType])
 
-Send a text message to mid(s).
+Send a text message to mid(s).  
 [https://developers.line.me/bot-api/api-reference#sending_message_text](https://developers.line.me/bot-api/api-reference#sending_message_text)
 
 ```js
-lineBot.sendText('<target mid>', 'Message');
-lineBot.sendText(['<target mid 1>', '<target mid 2>'], 'Message');
+client.sendText('<target mid>', 'Message');
+client.sendText(['<target mid 1>', '<target mid 2>'], 'Message');
 ```
 
 #### sendImage(mid, imageURL, previewURL[, toType])
 
-Send an image to mid(s).
+Send an image to mid(s).  
 [https://developers.line.me/bot-api/api-reference#sending_message_image](https://developers.line.me/bot-api/api-reference#sending_message_image)
 
 ```js
-lineBot.sendImage('<target mid>', 'http://example.com/image.jpg', 'http://example.com/preview.jpg');
+client.sendImage('<target mid>', 'http://example.com/image.jpg', 'http://example.com/preview.jpg');
 ```
 
 #### sendVideo(mid, videoURL, previewImageURL[, toType])
 
-Send a video to mid(s).
+Send a video to mid(s).  
 [https://developers.line.me/bot-api/api-reference#sending_message_video](https://developers.line.me/bot-api/api-reference#sending_message_video)
 
 ```js
-lineBot.sendVideo('<target mid>', 'http://example.com/video.mp4', 'http://example.com/video_preview.jpg');
+client.sendVideo('<target mid>', 'http://example.com/video.mp4', 'http://example.com/video_preview.jpg');
 ```
 
 #### sendAudio(mid, audioURL, durationMillis[, toType])
 
-Send a voice message to mid(s).
+Send a voice message to mid(s).  
 [https://developers.line.me/bot-api/api-reference#sending_message_audio](https://developers.line.me/bot-api/api-reference#sending_message_audio)
 
 ```js
-lineBot.sendAudio('<target mid>', 'http://example.com/audio.m4a', 5000);
+client.sendAudio('<target mid>', 'http://example.com/audio.m4a', 5000);
 ```
 
 #### sendLocation(mid, text, latitude, longitude[, toType])
 
-Send location information to mid(s).
+Send location information to mid(s).  
 [https://developers.line.me/bot-api/api-reference#sending_message_location](https://developers.line.me/bot-api/api-reference#sending_message_location)
 
 ```js
-lineBot.sendLocation('<target mid>', '2 Chome-21-1 Shibuya Tokyo 150-0002, Japan', 35.658240, 139.703478);
+client.sendLocation('<target mid>', '2 Chome-21-1 Shibuya Tokyo 150-0002, Japan', 35.658240, 139.703478);
 ```
 
 #### sendSticker(mid, stkid, stkpkgid, stkver[, toType])
 
-Send a sticker to mid(s).
+Send a sticker to mid(s).  
 [https://developers.line.me/bot-api/api-reference#sending_message_sticker](https://developers.line.me/bot-api/api-reference#sending_message_sticker)
 
 ```js
-lineBot.sendSticker('<target mid>', 1, 1, 100);
+client.sendSticker('<target mid>', 1, 1, 100);
 ```
 
 #### sendRichMessage(mid, imageURL, altText, markup[, toType])
 
-Send a rich message to mid(s).
+Send a rich message to mid(s).  
 [https://developers.line.me/bot-api/api-reference#sending_rich_content_message_request](https://developers.line.me/bot-api/api-reference#sending_rich_content_message_request)
 
 Note: Please see [image url specifications](https://developers.line.me/bot-api/api-reference#sending_rich_content_message_prerequisite)
 
 ```js
-var Markup = require('line-bot-sdk').Markup;
+var Markup = LineBot.Markup;
 var markup = new Markup(1040); // height
 
 markup
   .setAction('openHomepage', 'Open Homepage', 'https://line.me')
   .addListener('openHomepage', 0, 0, 1040, 1040);
 
-lineBot.sendRichMessage('<target mid>', 'https://example.com/image', 'Alt text', markup.build());
+client.sendRichMessage('<target mid>', 'https://example.com/image', 'Alt text', markup.build());
 ```
 
 #### sendMultipleMessages(mid, multipleMessages[, messageNotified])
 
-Send multiple messages to mids(s).
+Send multiple messages to mids(s).  
 [https://developers.line.me/bot-api/api-reference#sending_multiple_messages_request](https://developers.line.me/bot-api/api-reference#sending_multiple_messages_request)
 
 ```js
-var MultipleMessages = require('line-bot-sdk').MultipleMessages;
-var Markup = require('line-bot-sdk').Markup;
+var MultipleMessages = LineBot.MultipleMessages;
+var Markup = LineBot.Markup;
 var multipleMessages = new MultipleMessages();
 var markup = new Markup(1040); // height
 
@@ -135,7 +155,7 @@ multipleMessages
   .addSticker(1, 1, 100)
   .addRichMessage('https://example.com/image', 'Alt text', markup.build());
 
-lineBot.sendMultipleMessages('<target mid>', multipleMessages);
+client.sendMultipleMessages('<target mid>', multipleMessages);
 ```
 
 ### Getting Message Content
