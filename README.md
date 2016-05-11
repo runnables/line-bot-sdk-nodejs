@@ -104,11 +104,37 @@ lineBot.sendRichMessage('<target mid>', 'https://example.com/image', 'Alt text',
 
 #### sendMultipleMessages(mid, multipleMessages[, messageNotified])
 
+Send multiple messages to mids(s).  
+[https://developers.line.me/bot-api/api-reference#sending_multiple_messages_request](https://developers.line.me/bot-api/api-reference#sending_multiple_messages_request)
+
+```js
+var MultipleMessages = require('line-bot-sdk').MultipleMessages;
+var multipleMessages = new MultipleMessages();
+
+multipleMessages
+  .addText('Text')
+  .addImage('http://example.com/image.jpg', 'http://example.com/preview.jpg')
+  .addVideo('http://example.com/video.mp4', 'http://example.com/video_preview.jpg')
+  .addAudio('http://example.com/audio.m4a', 5000)
+  .addLocation('2 Chome-21-1 Shibuya Tokyo 150-0002, Japan', 35.658240, 139.703478)
+  .addSticker(1, 1, 100);
+
+lineBot.sendMultipleMessages('<target mid>', multipleMessages);
+```
+
+### Getting Message Content
+
 #### getMessageContent(messageId, fileHandler)
+
+### Getting Previews of Message Content
 
 #### getMessageContentPreview(messageId, fileHandler)
 
+### Getting User Profile Infomation
+
 #### getUserProfile(mid)
+
+### Other
 
 #### validateSignature(json, signature)
 
