@@ -2,7 +2,8 @@ var _ = require('lodash');
 var bodyParser = require('body-parser');
 var express = require('express');
 var request = require('superagent');
-var lineBot = require('line-bot-sdk')({
+var LineBot = require('line-bot-sdk');
+var client = LineBot.client({
   channelID: 'YOUR_CHANNEL_ID',
   channelSecret: 'YOUR_CHANNEL_SECRET',
   channelMID: 'YOUR_CHANNEL_MID'
@@ -18,7 +19,7 @@ app.use(bodyParser.json({ limit: 2 * 1024 * 1024 }));
 app.post('/', function (req, res) {
   console.log(req.body.result);
 
-  var receives = lineBot.createReceivesFromJSON(req.body);
+  var receives = client.createReceivesFromJSON(req.body);
   _.each(receives, function(receive){
     
     if(receive.isMessage()){
@@ -26,36 +27,36 @@ app.post('/', function (req, res) {
       if(receive.isText()){
 
         if(receive.getText()==='me'){
-          lineBot.getUserProfile(receive.getFromMid())
+          client.getUserProfile(receive.getFromMid())
             .then(function onResult(res){
               if(res.status === 200){
                 var contacts = res.body.contacts;
                 if(contacts.length > 0){
-                  lineBot.sendText(receive.getFromMid(), 'Hi!, you\'re ' + contacts[0].displayName);
+                  client.sendText(receive.getFromMid(), 'Hi!, you\'re ' + contacts[0].displayName);
                 }
               }
             }, function onError(err){
               console.error(err);
             });
         } else {
-          lineBot.sendText(receive.getFromMid(), receive.getText());
+          client.sendText(receive.getFromMid(), receive.getText());
         }
 
       }else if(receive.isImage()){
         
-        lineBot.sendText(receive.getFromMid(), 'Thanks for the image!');
+        client.sendText(receive.getFromMid(), 'Thanks for the image!');
 
       }else if(receive.isVideo()){
 
-        lineBot.sendText(receive.getFromMid(), 'Thanks for the video!');
+        client.sendText(receive.getFromMid(), 'Thanks for the video!');
 
       }else if(receive.isAudio()){
 
-        lineBot.sendText(receive.getFromMid(), 'Thanks for the audio!');
+        client.sendText(receive.getFromMid(), 'Thanks for the audio!');
 
       }else if(receive.isLocation()){
 
-        lineBot.sendLocation(
+        client.sendLocation(
             receive.getFromMid(),
             receive.getText() + receive.getAddress(),
             receive.getLatitude(),
@@ -65,7 +66,7 @@ app.post('/', function (req, res) {
       }else if(receive.isSticker()){
 
         // This only works if the BOT account have the same sticker too
-        lineBot.sendSticker(
+        client.sendSticker(
             receive.getFromMid(),
             receive.getStkId(),
             receive.getStkPkgId(),
@@ -74,7 +75,7 @@ app.post('/', function (req, res) {
 
       }else if(receive.isContact()){
         
-        lineBot.sendText(receive.getFromMid(), 'Thanks for the contact');
+        client.sendText(receive.getFromMid(), 'Thanks for the contact');
 
       }else{
         console.error('found unknown message type');
