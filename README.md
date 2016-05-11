@@ -109,7 +109,14 @@ Send multiple messages to mids(s).
 
 ```js
 var MultipleMessages = require('line-bot-sdk').MultipleMessages;
+var Markup = require('line-bot-sdk').Markup;
 var multipleMessages = new MultipleMessages();
+var markup = new Markup(1040); // height
+
+// markup for rich message
+markup
+  .setAction('openHomepage', 'Open Homepage', 'https://line.me')
+  .addListener('openHomepage', 0, 0, 1040, 1040);
 
 multipleMessages
   .addText('Text')
@@ -117,7 +124,8 @@ multipleMessages
   .addVideo('http://example.com/video.mp4', 'http://example.com/video_preview.jpg')
   .addAudio('http://example.com/audio.m4a', 5000)
   .addLocation('2 Chome-21-1 Shibuya Tokyo 150-0002, Japan', 35.658240, 139.703478)
-  .addSticker(1, 1, 100);
+  .addSticker(1, 1, 100)
+  .addRichMessage('https://example.com/image', 'Alt text', markup.build());
 
 lineBot.sendMultipleMessages('<target mid>', multipleMessages);
 ```
