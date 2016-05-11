@@ -1,0 +1,8 @@
+{
+  "name": "LINE Bot integration with Simsimi example",
+  "description": "A LINE Bot server NodeJS example that shows how to use Simsimi to respond users",
+  "repository": "",
+  "logo": "http://node-js-sample.herokuapp.com/node.svg",
+  "keywords": ["line", "linebot", "simsimi"],
+  "image": "heroku/nodejs"
+}
