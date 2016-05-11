@@ -17,11 +17,19 @@ npm install line-bot-sdk
 Usage
 --
 
+### For Bot Trial API
 ```js
 var lineBot = require('line-bot-sdk')({
   channelID: '<your channel ID>',
   channelSecret: '<your channel secret>',
   channelMID: '<your channel MID>'
+});
+```
+
+### For Business Account API
+```js
+var lineBot = require('line-bot-sdk')({
+  channelToken: '<your channel Token>',
 });
 ```
 
