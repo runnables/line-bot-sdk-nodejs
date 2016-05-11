@@ -167,7 +167,7 @@ client.sendMultipleMessages('<target mid>', multipleMessages);
 
 #### getMessageContentPreview(messageId, fileHandler)
 
-### Getting User Profile Infomation
+### Getting User Profile Information
 
 #### getUserProfile(mid)
 
