@@ -1,9 +1,8 @@
-var bot = require('./lib/bot');
-
-module.exports = function(config) {
-  return bot.init(config);
+module.exports = {
+  client: function(config) {
+    return require('./lib/bot').init(config);
+  },
+  ContentType: require('./lib/constants/ContentType'),
+  Markup: require('./lib/message/Markup'),
+  MultipleMessages: require('./lib/message/MultipleMessages')
 };
-
-module.exports.Markup = require('./lib/message/Markup');
-module.exports.MultipleMessages = require('./lib/message/MultipleMessages');
-module.exports.ContentType = require('./lib/constants/ContentType');
