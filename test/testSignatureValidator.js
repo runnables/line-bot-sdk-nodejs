@@ -48,7 +48,6 @@ describe('SignatureValidator', function() {
     }\n\
   ]\n\
 }';
-
   var signature = 'kPXp0nPWSzfWAapWHiesbcztpKnXJoX8krCa1CcTghk=';
 
   it('should be able to validate signature', function(done) {
