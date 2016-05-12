@@ -10,7 +10,7 @@ describe('SignatureValidator', function() {
     channelSecret: 'testsecret',
     channelMID: 'u0a556cffd4da0dd89c94fb36e36e1cdc'
   };
-  var json = '{\n\
+  var rawJSON = '{\n\
   "result":[\n\
     {\n\
       "from":"u206d25c2ea6bd87c17655609a1c37cb8",\n\
@@ -52,8 +52,8 @@ describe('SignatureValidator', function() {
   var signature = 'kPXp0nPWSzfWAapWHiesbcztpKnXJoX8krCa1CcTghk=';
 
   it('should be able to validate signature', function(done) {
-    SignatureValidator.validateSignature(json, config.channelSecret, signature).should.be.true;
-    SignatureValidator.validateSignature(json, config.channelSecret, 'XXX').should.be.false;
+    SignatureValidator.validateSignature(rawJSON, config.channelSecret, signature).should.be.true;
+    SignatureValidator.validateSignature(rawJSON, config.channelSecret, 'XXX').should.be.false;
     done();
   });
 });

@@ -188,7 +188,7 @@ client
 
 ### Other
 
-#### validateSignature(json, signature)
+#### validateSignature(rawJSON, signature)
 
 #### createReceivesFromJSON(json)
 
