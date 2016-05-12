@@ -12,7 +12,7 @@ Installation
 The LINE BOT API SDK can be installed with [NPM](https://www.npmjs.com).
 
 ```
-npm install line-bot-sdk
+$ npm install line-bot-sdk
 ```
 
 Usage
@@ -196,7 +196,7 @@ Test
 --
 
 ```
-npm test
+$ npm test
 ```
 
 License
