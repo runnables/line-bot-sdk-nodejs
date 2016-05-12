@@ -12,7 +12,7 @@ Installation
 The LINE BOT API SDK can be installed with [NPM](https://www.npmjs.com).
 
 ```
-npm install line-bot-sdk
+$ npm install line-bot-sdk
 ```
 
 Usage
@@ -56,7 +56,7 @@ $ DEBUG=line-bot:* node app.js
 
 ### Sending Message
 
-mid can be a string or an array of strings.
+Note: mid can be either a string or an array of strings.
 
 #### sendText(mid, text[, toType])
 
@@ -174,6 +174,8 @@ client.sendMultipleMessages('<target mid>', multipleMessages);
 Retrieve user profile(s) that is associated with mid(s).  
 [https://developers.line.me/bot-api/api-reference#getting_user_profile_information_request](https://developers.line.me/bot-api/api-reference#getting_user_profile_information_request)
 
+Note: mid can be either a string or an array of strings.
+
 ```js
 client
   .getUserProfile(['<target mid>'])
@@ -189,6 +191,13 @@ client
 #### validateSignature(json, signature)
 
 #### createReceivesFromJSON(json)
+
+Test
+--
+
+```
+$ npm test
+```
 
 License
 --
