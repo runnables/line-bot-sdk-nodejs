@@ -23,7 +23,6 @@
   },
   "homepage": "https://github.com/runnables/line-bot-sdk-nodejs#readme",
   "dependencies": {
-    "chai-as-promised": "^5.3.0",
     "debug": "~2.2.0",
     "lodash.merge": "^4.3.5",
     "superagent": "^1.8.3",
