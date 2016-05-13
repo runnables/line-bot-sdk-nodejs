@@ -159,14 +159,6 @@ multipleMessages
 client.sendMultipleMessages('<target mid>', multipleMessages);
 ```
 
-### Getting Message Content
-
-#### getMessageContent(messageId, fileHandler)
-
-### Getting Previews of Message Content
-
-#### getMessageContentPreview(messageId, fileHandler)
-
 ### Getting User Profile Information
 
 #### getUserProfile(mid)
