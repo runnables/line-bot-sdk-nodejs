@@ -46,7 +46,7 @@ var client = LineBot.client({
 
 Use `DEBUG` env var to enable debugging mode
 
-Available mode
+Available values
 * line-bot:log
 * line-bot:error
 
@@ -190,7 +190,17 @@ client
 
 #### validateSignature(rawJSON, signature)
 
+Validate signature.
+
+```js
+var isValid = client.validateSignature(requestJSON, '<expected-signature>');
+```
+
 #### createReceivesFromJSON(json)
+
+```js
+var receives = client.createReceivesFromJSON(requestBody);
+```
 
 Test
 --
