@@ -38,6 +38,8 @@ var client = LineBot.client({
 
 ```js
 var client = LineBot.client({
+  channelID: '<your channel ID>',
+  channelSecret: '<your channel secret>',
   channelToken: '<your channel token>'
 });
 ```
